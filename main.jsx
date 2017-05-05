@@ -1,5 +1,7 @@
 import React from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import {
 	Table,
 	TableBody,
@@ -22,9 +24,9 @@ class Main extends React.Component {
 		let {milage} =this.state;
 
 		return(
-			<MuiThemeProvider>
+			<MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
 				<Table>
-					<TableHeader>
+					<TableHeader displaySelectAll={false} adjustForCheckbox={false}>
 						<TableRow>
 							<TableHeaderColumn>MODEL</TableHeaderColumn>
 							<TableHeaderColumn>COLOR</TableHeaderColumn>
@@ -32,18 +34,24 @@ class Main extends React.Component {
 							<TableHeaderColumn>MILAGE</TableHeaderColumn>
 						</TableRow>
 					</TableHeader>
-					<TableBody>
+					<TableBody displayRowCheckbox={false}>
 						<TableRow>
 							<TableRowColumn>{model}</TableRowColumn>
 							<TableRowColumn>{color}</TableRowColumn>
 							<TableRowColumn>{year}</TableRowColumn>
-							<TableHeaderColumn>{milage}</TableHeaderColumn>
+							<TableRowColumn>{milage}</TableRowColumn>
 						</TableRow>
 						<TableRow>
 							<TableRowColumn>{model}</TableRowColumn>
 							<TableRowColumn>{color}</TableRowColumn>
 							<TableRowColumn>{year}</TableRowColumn>
-							<TableHeaderColumn>{milage}</TableHeaderColumn>
+							<TableRowColumn>{milage}</TableRowColumn>
+						</TableRow>
+						<TableRow>
+							<TableRowColumn>{model}</TableRowColumn>
+							<TableRowColumn>{color}</TableRowColumn>
+							<TableRowColumn>{year}</TableRowColumn>
+							<TableRowColumn>{milage}</TableRowColumn>
 						</TableRow>
 					</TableBody>
 				</Table>
