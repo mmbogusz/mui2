@@ -21,7 +21,7 @@ class Main extends React.Component {
 		let {model, color, year} = this.props;
 		let {milage} =this.state;
 
-		const TableExampleSimple = () => (
+		return(
 			<MuiThemeProvider>
 				<Table>
 					<TableHeader>
