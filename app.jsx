@@ -1,15 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import TableExample from './tableExample';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+import Main from './main';
 
-const App = () => (
-	<MuiThemeProvider>
-		<TableExample />
-	</MuiThemeProvider>
-);
+injectTapEventPlugin();
 
-ReactDOM.render(
-	<App />,
-	document.getElementById('app')
-);
+ReactDOM.render(<Main model="suzuki" color="green" year="1988" />, document.getElementById("app"));
+
+
