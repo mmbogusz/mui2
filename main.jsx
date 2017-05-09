@@ -12,6 +12,8 @@ import {
 	TableRowColumn,
 } from 'material-ui/Table';
 import PropTypes from 'prop-types';
+import axios from 'axios';
+import DetailComponent from './DetailComponent'
 
 const style_button = {
 	margin: 20,
@@ -20,41 +22,76 @@ const style_button = {
 class Main extends React.Component {
 	constructor(props) {
 		super(props);
+		this.takeData();
+
 		this.state = {
-			data: [
-				{
-					model: 'suzuki',
-					color: 'blue',
-					year: 2012
-				},
-				{
-					model: 'fiat',
-					color: 'green',
-					year: 2022
-				},
-				{
-					model: 'honda',
-					color: 'silver',
-					year: 1999
-				}
-			]
+			data: [],
+			details: null
+			// 	{
+			// 		model: 'suzuki',
+			// 		color: 'blue',
+			// 		year: 2012
+			// 	},
+			// 	{
+			// 		model: 'fiat',
+			// 		color: 'green',
+			// 		year: 2022
+			// 	},
+			// 	{
+			// 		model: 'honda',
+			// 		color: 'silver',
+			// 		year: 1999
+			// 	}
+			// ]
 		};
+	}
+	renderDetails (){
+		if (this.state.details){
+			return <DetailComponent row={this.state.details}/>
+		}
+		return null
 	}
 
 	renderRows(){
-		return this.state.data.map(row => {
-			return <TableRow>
+		return this.state.data.map((row, index) => {
+			return <TableRow key={index}>
 				<TableRowColumn>{row.model}</TableRowColumn>
 				<TableRowColumn>{row.color}</TableRowColumn>
 				<TableRowColumn>{row.year}</TableRowColumn>
+				<TableRowColumn><RaisedButton label="details" onClick={()=>this.showDetails(row)} /></TableRowColumn>
 			</TableRow>
 		});
 	}
 
-	addRow(){
+	showDetails(row) {
 		this.setState({
-			data: this.state.data.push({model: 'dhashjui',color: 'random',year: 1893})
-		});
+			details: row
+		})
+	}
+
+	addRow(){
+		 this.state.data.push({
+			model: 'dhashjui',
+			color: 'random',
+			year: 1893
+	})
+		this.setState({
+			data: this.state.data
+	})
+	}
+
+	takeData(){
+		axios.get("http://localhost:3000/endpoint1", {
+
+		})
+			.then( response => {
+				this.setState({
+					data: response.data
+				})
+			})
+			.catch(function (error) {
+				console.log(error);
+			});
 	}
 
 
@@ -74,6 +111,8 @@ class Main extends React.Component {
 						{this.renderRows()}
 					</TableBody>
 				</Table>
+					{this.renderDetails()}
+					<detailComponent/>x
 				<RaisedButton label="ADD content" style ={style_button} onClick={()=>this.addRow()} />
 					</div>
 			</MuiThemeProvider>
