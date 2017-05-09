@@ -1,0 +1,21 @@
+[{
+  "model": "suzuki",
+  "color": "blue",
+  "year": 1998,
+  "ID" : 1,
+  "milage" : 23424
+  },
+  {
+  "model": "fiat",
+  "color": "yellow",
+  "year": 1998,
+    "ID": 2,
+    "milage": 3421
+},
+  {
+  "model": "bmw",
+  "color": "red",
+  "year": 1998,
+    "ID": 2,
+    "milage": 3421
+}]
